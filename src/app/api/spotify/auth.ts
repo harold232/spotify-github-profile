@@ -1,44 +1,29 @@
 export async function getAccessToken(): Promise<string> {
-    const clientId = process.env.SPOTIFY_CLIENT_ID;
-    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-    const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
-
-    if (!clientId || !clientSecret || !refreshToken) {
-        throw new Error(
-            "Missing Spotify environment variables"
-        );
-    }
-
     const response = await fetch(
         "https://accounts.spotify.com/api/token",
         {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-
                 Authorization:
                     "Basic " +
                     Buffer.from(
-                        `${clientId}:${clientSecret}`
+                        `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
                     ).toString("base64"),
             },
-
             body: new URLSearchParams({
                 grant_type: "refresh_token",
-                refresh_token: refreshToken,
+                refresh_token:
+                    process.env.SPOTIFY_REFRESH_TOKEN!,
             }),
-
             cache: "no-store",
         }
     );
 
 
     if (!response.ok) {
-        const error = await response.text();
-
         throw new Error(
-            `Spotify token error: ${error}`
+            "Could not refresh Spotify token"
         );
     }
 
