@@ -25,7 +25,7 @@ export function createSpotifyCard(data: CardData): string {
         data.duration
     )}
 
-      ${drawAlbumCover()}
+      ${drawAlbumCover(data.cover)}
 
     </svg>
   `;
