@@ -3,8 +3,16 @@ import { createSpotifyCard } from "@/lib/svg";
 export async function GET() {
 
     const svg = createSpotifyCard({
-        title: "Hello World",
-        subtitle: "Nuestra primera tarjeta SVG 🚀"
+        title: "Die With A Smile",
+        artist: "Lady Gaga • Bruno Mars",
+        album: "Single",
+
+        progress: 150000,
+        duration: 240000,
+
+        isPlaying: true,
+
+        cover: "",
     });
 
     return new Response(svg, {
