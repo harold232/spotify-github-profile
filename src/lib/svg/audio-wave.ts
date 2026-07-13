@@ -3,9 +3,9 @@ export function drawAudioWave(progress: number, duration: number, isPlaying: boo
         return "";
     }
 
-    const TOTAL_BARS = 60;
+    const TOTAL_BARS = 36;
 
-    const BAR_WIDTH = 5;
+    const BAR_WIDTH = 4;
 
     const GAP = 4;
 
@@ -38,13 +38,15 @@ export function drawAudioWave(progress: number, duration: number, isPlaying: boo
         const amplitude =
             5 + Math.abs(Math.sin(i * 0.7)) * 8;
 
+        // Alto de los waves
         const height =
-            heights[i % heights.length];
+            heights[i % heights.length] * 0.70;
 
         const x =
             START_X + i * (BAR_WIDTH + GAP);
 
-        const CENTER_Y = 185;
+        // Movimiento y del wave
+        const CENTER_Y = 165;
 
         const y = CENTER_Y - height / 2;
 
