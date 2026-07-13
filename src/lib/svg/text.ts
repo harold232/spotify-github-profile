@@ -29,8 +29,7 @@ export function scrollIfNeeded(
     const scrolling =
         text +
         separator +
-        text +
-        separator;
+        text;
 
 
     const offset =
@@ -38,7 +37,11 @@ export function scrollIfNeeded(
 
 
     const start =
-        offset % textWidth(scrolling, font);
-    
-    return scrolling.slice(start);
+        offset % text.length;
+
+
+    return (
+        scrolling.substring(start) +
+        scrolling.substring(0, start)
+    );
 }
