@@ -1,5 +1,6 @@
 import { createSpotifyCard } from "@/lib/svg";
 import { getNowPlaying, getLastPlayed } from "@/lib/spotify";
+import { imageToBase64 } from "@/lib/spotify/image";
 
 
 export async function GET() {
@@ -22,7 +23,12 @@ export async function GET() {
     }
 
 
-    const svg = createSpotifyCard(song);
+    const cover = await imageToBase64(song.cover);
+
+    const svg = createSpotifyCard({
+        ...song,
+        cover,
+    });
 
 
     return new Response(svg, {
