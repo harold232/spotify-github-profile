@@ -1,8 +1,27 @@
 import { CardData } from "./types";
 import {escapeXml} from "@/lib/svg/utils";
+import { scrollIfNeeded } from "./text";
 
 
 export function drawSongInfo(data: CardData) {
+
+    const title = scrollIfNeeded(
+        data.title,
+        320,
+        "bold 26px Arial"
+    );
+
+    const artist = scrollIfNeeded(
+        data.artist,
+        320,
+        "18px Arial"
+    );
+
+    const album = scrollIfNeeded(
+        data.album,
+        320,
+        "14px Arial"
+    );
 
     return `
         <text
@@ -13,7 +32,7 @@ export function drawSongInfo(data: CardData) {
          font-family="Arial"
          font-weight="bold"
         >
-         ${escapeXml(data.title)}
+         ${escapeXml(title)}
         </text>
         
         
@@ -24,7 +43,7 @@ export function drawSongInfo(data: CardData) {
          font-size="18"
          font-family="Arial"
         >
-         ${escapeXml(data.artist)}
+         ${escapeXml(artist)}
         </text>
         
         
@@ -35,7 +54,7 @@ export function drawSongInfo(data: CardData) {
          font-size="14"
          font-family="Arial"
         >
-         ${escapeXml(data.album)}
+         ${escapeXml(album)}
         </text>
         
      `;
