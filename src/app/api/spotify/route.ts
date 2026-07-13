@@ -28,7 +28,8 @@ export async function GET() {
     return new Response(svg, {
         headers: {
             "Content-Type": "image/svg+xml",
-            "Cache-Control": "no-cache",
+            "Cache-Control":
+                "public, max-age=0, s-maxage=60, stale-while-revalidate=30",
         },
     });
 }
