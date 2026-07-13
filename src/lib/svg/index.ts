@@ -11,11 +11,11 @@ import {drawDefs} from "@/lib/svg/defs";
 export function createSpotifyCard(data: CardData): string {
     return `
     <svg
-        width="700"
-        height="260"
-        viewBox="0 0 700 260"
+        width="500"
+        height="200"
+        viewBox="0 0 500 200"
         xmlns="http://www.w3.org/2000/svg"
-    >   
+    >
         ${drawDefs()}
 
         ${drawBackground()}
